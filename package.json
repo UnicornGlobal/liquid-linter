@@ -15,12 +15,12 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "mocha": "^2.4.5",
-    "nodemon": "^1.9.1"
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1",
+    "nodemon": "^2.0.4"
   },
   "dependencies": {
-    "bluebird": "^3.3.5",
-    "liquid-node": "^2.6.1"
+    "bluebird": "^3.7.2",
+    "liquid": "^4.0.1"
   }
 }
