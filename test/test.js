@@ -107,6 +107,7 @@ describe('promisify', function() {
   it('Should return 2 Error when parsing malformed document in promise mode', function (done) {
     linter.lintFilePromise('./testcases/fulldocuments/malformed.md')
       .then(function(err) {
+        console.log(err)
         assert.equal(err.length, 2);
         done();
       });

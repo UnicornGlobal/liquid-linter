@@ -1,7 +1,7 @@
 const Promise = require('bluebird');
 const fs = Promise.promisifyAll(require('fs'));
 
-const Liquid = require("liquid-node");
+const Liquid = require("liquid");
 const engine = new Liquid.Engine;
 
 const replaceProblemWithSpace = (chunk, err) => {
@@ -45,6 +45,7 @@ const linter = {
     const allchecks = [];
     return fs.readFileAsync(filepath)
       .then((buffer) => {
+        console.log('b', buffer);
         allchecks.push(parseChunk(buffer.toString(), errors));
         return Promise.all(allchecks)
           .then(() => errors.reverse());
