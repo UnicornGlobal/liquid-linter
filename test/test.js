@@ -7,7 +7,6 @@ const tags = {
 };
 
 describe('tags', function() {
-
   describe('sectiontag', function() {
     describe('hooks', function() {
       beforeEach(function() {
@@ -136,3 +135,132 @@ describe('whitespace', function() {
   });
 });
 
+describe('shopify', function() {
+  describe('hooks', function() {
+    beforeEach(function() {
+      linter = require('../index.js');
+    });
+  });
+
+  it('Should pass https://shopify.dev/docs/themes/liquid/reference/basics', function (done) {
+    linter.lintFile('./testcases/shopify/basics/name.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/basics/object.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/basics/filters.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+
+    done();
+  });
+
+  it('Should pass https://shopify.dev/docs/themes/liquid/reference/basics/operators', function (done) {
+    linter.lintFile('./testcases/shopify/operators/basic.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/operators/contains.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/operators/multiple.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/operators/order.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+
+    done();
+  });
+
+  process.on('unhandledRejection', (reason, p) => {
+    console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+    // application specific logging, throwing an error, or other logic here
+  });
+
+  it('Should pass https://shopify.dev/docs/themes/liquid/reference/basics/types', function (done) {
+    linter.lintFile('./testcases/shopify/types/array.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/types/boolean.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/types/empty.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/types/nil.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/types/number.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/types/string.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/types/unless.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+
+    done();
+  });
+
+  it('Should pass https://shopify.dev/docs/themes/liquid/reference/basics/true-and-false', function (done) {
+    linter.lintFile('./testcases/shopify/truthy/empty.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/truthy/falsy.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/truthy/tags.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/truthy/truthy.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/truthy/unless.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+
+    done();
+  });
+
+  it('Should pass https://shopify.dev/docs/themes/liquid/reference/basics/whitespace', function (done) {
+    linter.lintFile('./testcases/shopify/whitespace/control.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/whitespace/none.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+    linter.lintFile('./testcases/shopify/whitespace/variable.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+
+    done();
+  });
+
+  it('Should pass https://shopify.dev/docs/themes/liquid/reference/objects', function (done) {
+    linter.lintFile('./testcases/shopify/objects.md', function (output) {
+      assert.equal(output.length, 0);
+    });
+
+    done();
+  });
+
+  it('Should pass https://shopify.dev/docs/themes/liquid/reference/tags', function (done) {
+    linter.lintFile('./testcases/shopify/tags.md', function (output) {
+      console.log(output)
+      assert.equal(output.length, 0);
+    });
+
+    done();
+  });
+
+  it('Should pass https://shopify.dev/docs/themes/liquid/reference/filters', function (done) {
+    linter.lintFile('./testcases/shopify/tags.md', function (output) {
+      console.log(output)
+      assert.equal(output.length, 0);
+    });
+
+    done();
+  });
+});
