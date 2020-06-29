@@ -2,17 +2,15 @@ const Promise = require('bluebird');
 const fs = Promise.promisifyAll(require('fs'));
 
 const Liquid = require("liquid");
-const engine = new Liquid.Engine;
+const engine = new Liquid.Engine();
 
 const replaceProblemWithSpace = (chunk, err) => {
   const problemReg = /at (.*) /;
   const replacer = err.message.match(problemReg)[1];
-  const replacee = replacer.replace(/.*/g, ' ');
-  var replacedstring = chunk.split(/\n/g);
-  var newlinestring = replacedstring[err.location.line-1];
-  newlinestring = newlinestring.substring(0, err.location.col-1) + replacee + newlinestring.substring(err.location.col-1 + replacer.length, newlinestring.length);
-  replacedstring[err.location.line-1] = newlinestring;
-  return replacedstring.join('\n');
+  var details = chunk.split(/\n/g);
+  const index = err.location.line - 1;
+  details[index] = 'xxxxxxxx';
+  return details.join('\n');
 };
 
 const parseChunk = (chunk, errors) => {
@@ -20,16 +18,12 @@ const parseChunk = (chunk, errors) => {
     .parse(chunk)
     .catch((err) => {
       if(err.name === "Liquid.SyntaxError") {
-        const problemReg = /at (.*) /;
-        const length = err.message.match(problemReg)[1].length;
-        err.location.lenght = length;
         errors.push(err);
       }
       chunk = replaceProblemWithSpace(chunk, err);
       return parseChunk(chunk, errors);
     });
 };
-
 
 const linter = {
   lintFile: (filepath, callback) => {
@@ -45,10 +39,11 @@ const linter = {
     const allchecks = [];
     return fs.readFileAsync(filepath)
       .then((buffer) => {
-        console.log('b', buffer);
         allchecks.push(parseChunk(buffer.toString(), errors));
         return Promise.all(allchecks)
-          .then(() => errors.reverse());
+          .then(() => {
+            return errors.reverse()
+          });
       });
   },
   lintString: (string, callback) => {

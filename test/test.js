@@ -107,9 +107,32 @@ describe('promisify', function() {
   it('Should return 2 Error when parsing malformed document in promise mode', function (done) {
     linter.lintFilePromise('./testcases/fulldocuments/malformed.md')
       .then(function(err) {
-        console.log(err)
         assert.equal(err.length, 2);
         done();
       });
   });
 });
+
+describe('whitespace', function() {
+  describe('hooks', function() {
+    beforeEach(function() {
+      linter = require('../index.js');
+    });
+  });
+
+  it('Should pass https://shopify.github.io/liquid/basics/whitespace', function (done) {
+    linter.lintFile('./testcases/fulldocuments/whitespace.md', function (output) {
+      assert.equal(output.length, 0);
+      // assert.include(err[0].message, "Variable \'{{\' was not properly terminated");
+      done();
+    });
+  });
+
+  it('Should return no Error, when variable is not opening', function (done) {
+    linter.lintFile('./testcases/variable/variable-notopening.md', function (err) {
+      assert.equal(err.length, 0);
+      done();
+    });
+  });
+});
+
