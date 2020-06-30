@@ -1,8 +1,11 @@
 const Promise = require('bluebird');
 const fs = Promise.promisifyAll(require('fs'));
 
-const Liquid = require("liquid");
+const Liquid = require('liquid');
 const engine = new Liquid.Engine();
+
+const Shopify = require('./shopify.js');
+Shopify.register(engine);
 
 const replaceProblemWithSpace = (chunk, err) => {
   const problemReg = /at (.*) /;

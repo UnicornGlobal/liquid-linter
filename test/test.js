@@ -122,7 +122,6 @@ describe('whitespace', function() {
   it('Should pass https://shopify.github.io/liquid/basics/whitespace', function (done) {
     linter.lintFile('./testcases/fulldocuments/whitespace.md', function (output) {
       assert.equal(output.length, 0);
-      // assert.include(err[0].message, "Variable \'{{\' was not properly terminated");
       done();
     });
   });
@@ -171,11 +170,6 @@ describe('shopify', function() {
     });
 
     done();
-  });
-
-  process.on('unhandledRejection', (reason, p) => {
-    console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
-    // application specific logging, throwing an error, or other logic here
   });
 
   it('Should pass https://shopify.dev/docs/themes/liquid/reference/basics/types', function (done) {
@@ -248,7 +242,6 @@ describe('shopify', function() {
 
   it('Should pass https://shopify.dev/docs/themes/liquid/reference/tags', function (done) {
     linter.lintFile('./testcases/shopify/tags.md', function (output) {
-      console.log(output)
       assert.equal(output.length, 0);
     });
 
@@ -257,7 +250,6 @@ describe('shopify', function() {
 
   it('Should pass https://shopify.dev/docs/themes/liquid/reference/filters', function (done) {
     linter.lintFile('./testcases/shopify/tags.md', function (output) {
-      console.log(output)
       assert.equal(output.length, 0);
     });
 

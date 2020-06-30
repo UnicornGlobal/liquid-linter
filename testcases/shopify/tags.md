@@ -170,6 +170,8 @@
 
 My name is Wilson Abercrombie{% comment %}, esquire{% endcomment %}.
 
+{%     echo comment %}
+
 {% liquid
 if product.featured_image
   echo product.featured_image | img_tag

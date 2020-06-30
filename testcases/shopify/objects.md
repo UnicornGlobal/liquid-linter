@@ -5,6 +5,9 @@
 {% assign article = articles['news/hello-world'] %}
 {{ article.title | link_to: article.url }}
 
+{{ echo article }}
+{{           echo article }}
+
 <ul>
   {% for article in blogs.myblog.articles  %}
    <li>{{ article.title | link_to: article.url }}</li>
