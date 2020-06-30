@@ -1,9 +1,9 @@
 const Liquid = require('liquid')
 
-class StyleTag extends Liquid.Tag {
+class Block extends Liquid.Block {
   render () {
-    return '<style>'
+    return ''
   }
 }
 
-module.exports = StyleTag
+module.exports = Block

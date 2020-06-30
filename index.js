@@ -35,7 +35,9 @@ const linter = {
     const testString = fs.readFileSync(filepath).toString();
     allchecks.push(parseChunk(testString, errors));
     Promise.all(allchecks)
-      .then(() => callback(errors.reverse()));
+      .then(() => {
+        callback(errors.reverse())
+      });
   },
   lintFilePromise: (filepath) => {
     const errors = [];

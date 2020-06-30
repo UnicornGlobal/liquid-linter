@@ -1,11 +1,6 @@
 const assert = require('chai').assert;
 const linter = require('../index.js');
 
-const tags = {
-  blocks: ["column", "deviceframe", "productcard", "section", "slider"],
-  tags: ["button", "customerquote", "snippet", "video", "vidyard"]
-};
-
 describe('tags', function() {
   describe('sectiontag', function() {
     describe('hooks', function() {
@@ -13,17 +8,17 @@ describe('tags', function() {
         linter = require('../index.js');
       });
     });
-    it('should return 2 Errors when section tag is unknown', function (done) {
-      linter.lintFile('./testcases/sectiontag/sectiontag-complete.md', function (err) {
+
+    it('should return 2 Errors when tag is unknown', function (done) {
+      linter.lintFile('./testcases/unknowntag/unknown.md', function (err) {
         assert.equal(err.length, 2);
-        assert.include(err[0].message, "Unknown tag \'endsection\'");
-        assert.include(err[1].message, "Unknown tag \'section\'");
+        assert.include(err[0].message, "Unknown tag \'endxyz\'");
+        assert.include(err[1].message, "Unknown tag \'xyz\'");
         done();
       });
     });
 
     it('should return 1 Error when section tag does not close', function (done) {
-      linter.loadTags(tags);
       linter.lintFile('./testcases/sectiontag/sectiontag-incomplete.md', function (err) {
         assert.equal(err.length, 1);
         assert.include(err[0].message, "section tag was never closed");
@@ -32,7 +27,6 @@ describe('tags', function() {
     });
 
     it('should return 1 Error when closed section tag does not open', function (done) {
-      linter.loadTags(tags);
       linter.lintFile('./testcases/sectiontag/sectiontag-incomplete-02.md', function (err) {
         assert.equal(err.length, 1);
         assert.include(err[0].message, "Unknown tag \'endsection\'");
@@ -41,7 +35,6 @@ describe('tags', function() {
     });
 
     it('should return no Error when bgimage parameter is good', function (done) {
-      linter.loadTags(tags);
       linter.lintFile('./testcases/sectiontag/sectiontag-parameter-bgimage-passing.md', function (err) {
         assert.equal(err.length, 0);
         done();
@@ -93,13 +86,19 @@ describe('variables', function() {
       done();
     });
   });
+
+  it('Should have 2 Errors when document is malformed from file', function (done) {
+    linter.lintFile('./testcases/fulldocuments/malformed.md', function (err) {
+      assert.equal(err.length, 2);
+      done();
+    });
+  });
 });
 
 describe('promisify', function() {
   describe('hooks', function() {
     beforeEach(function() {
       linter = require('../index.js');
-      linter.loadTags(tags);
     });
   });
 
