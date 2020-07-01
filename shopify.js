@@ -18,7 +18,6 @@ const Section = require('./shopify/section.js')
 const EndSection = require('./shopify/endsection.js')
 const Schema = require('./shopify/schema.js')
 const When = require('./shopify/when.js')
-const Or = require('./shopify/or.js')
 
 module.exports = {
   register: (engine) => {
@@ -40,6 +39,5 @@ module.exports = {
     engine.registerTag('endfor', EndFor)
     engine.registerTag('endcase', EndCase)
     engine.registerTag('when', When)
-    engine.registerTag('or', When)
   }
 }

@@ -28,9 +28,15 @@ describe('tags', function() {
 
     it('should handle a valid multi line if statement', function (done) {
       linter.lintFile('./testcases/multiline/if.md', function (err) {
-        console.log(err)
+        assert.equal(err.length, 0);
+        done();
+      });
+    });
+
+    it('should handle an invalid multi line if statement', function (done) {
+      linter.lintFile('./testcases/multiline/invalid.md', function (err) {
         assert.equal(err.length, 1);
-        assert.include(err[0].message, "form tag was never closed");
+        assert.include(err[0].message, "invalid `if` syntax");
         done();
       });
     });
