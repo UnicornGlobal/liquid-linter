@@ -20,6 +20,7 @@ const parseChunk = (chunk, errors) => {
   return engine
     .parse(chunk)
     .catch((err) => {
+      console.log(err)
       if(err.name === "Liquid.SyntaxError") {
         errors.push(err);
       }

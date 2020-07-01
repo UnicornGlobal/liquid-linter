@@ -18,18 +18,27 @@ describe('tags', function() {
       });
     });
 
-    it('should return 1 Error when section tag does not close', function (done) {
-      linter.lintFile('./testcases/sectiontag/sectiontag-incomplete.md', function (err) {
+    it('should return 1 Error when a block tag does not close', function (done) {
+      linter.lintFile('./testcases/unclosed/form.md', function (err) {
         assert.equal(err.length, 1);
-        assert.include(err[0].message, "section tag was never closed");
+        assert.include(err[0].message, "form tag was never closed");
         done();
       });
     });
 
-    it('should return 1 Error when closed section tag does not open', function (done) {
-      linter.lintFile('./testcases/sectiontag/sectiontag-incomplete-02.md', function (err) {
+    it('should handle a valid multi line if statement', function (done) {
+      linter.lintFile('./testcases/multiline/if.md', function (err) {
+        console.log(err)
         assert.equal(err.length, 1);
-        assert.include(err[0].message, "Unknown tag \'endsection\'");
+        assert.include(err[0].message, "form tag was never closed");
+        done();
+      });
+    });
+
+    it('should return 1 Error when closed block tag does not open', function (done) {
+      linter.lintFile('./testcases/unclosed/endform.md', function (err) {
+        assert.equal(err.length, 1);
+        assert.include(err[0].message, "Unknown tag \'endform\'");
         done();
       });
     });

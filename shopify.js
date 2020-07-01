@@ -15,8 +15,10 @@ const EndCase = require('./shopify/endcase.js')
 const EndFor = require('./shopify/endfor.js')
 const EndIf = require('./shopify/endif.js')
 const Section = require('./shopify/section.js')
+const EndSection = require('./shopify/endsection.js')
 const Schema = require('./shopify/schema.js')
 const When = require('./shopify/when.js')
+const Or = require('./shopify/or.js')
 
 module.exports = {
   register: (engine) => {
@@ -32,10 +34,12 @@ module.exports = {
     engine.registerTag('liquid', LiquidLineTag)
     engine.registerTag('echo', Echo)
     engine.registerTag('section', Section)
+    engine.registerTag('endsection', EndSection)
     engine.registerTag('schema', Schema)
     engine.registerTag('endif', EndIf)
     engine.registerTag('endfor', EndFor)
     engine.registerTag('endcase', EndCase)
     engine.registerTag('when', When)
+    engine.registerTag('or', When)
   }
 }
