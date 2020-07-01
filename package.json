@@ -1,6 +1,6 @@
 {
   "name": "@unicorns/liquid-linter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A liquid template language linter",
   "main": "index.js",
   "scripts": {
