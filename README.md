@@ -23,7 +23,7 @@ linter.lintString(testString, function(err) {
 
 ## CLI usage
 
-If you are looking to use the liquid linter as a cli tool, @Potherca created a wrapper around this package, which you can find here: https://github.com/DealerDirect/liquid-linter-cli
+If you are looking to use the liquid linter as a cli tool, [Potherca](https://pother.ca) created a wrapper around this package, which is being maintained by Unicorn Global here: https://github.com/UnicornGlobal/liquid-linter-cli
 
 ## Methods
 
